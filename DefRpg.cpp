@@ -1004,6 +1004,133 @@ void whatItemToUnequip(struct player* playerXYZ, int showId, struct items offens
     }
 }
 
+//common graphics
+void commonGraphics(int option)
+{
+    switch (option)
+    {
+    case 1:
+        printf(R"EOF(
+              .-.
+             (o.o)
+              |=|                  +-+ 
+             __|__    0============| |
+          // .=|=. \\//           `:_;'
+          \\ .=|=.  \/
+           \\(_=_)
+            (:| |:
+             || ||
+             () ()
+             || ||
+             || ||
+            ==' '== 
+            )EOF");
+        break;
+    case 2:
+        printf(R"EOF(
+                     ___
+                    /<T>\
+                   /     \      
+                  /       \
+                 /         \
+
+            )EOF");
+        break;
+    case 3:
+        printf(R"EOF(
+ 
+              _,._      
+  .||,       /_ _\\     
+ \.`',/      |o o| |    
+ = ,. =      | - | L    
+ / || \    ,-'\ /,'`.   
+   ||     ,'   `,,. `.  
+   ,|____,' , ,;' \| |  
+  (3|\    _/|/'   _| |  
+   ||/,-''  | >-'' _,\\ 
+   ||'      ==\ ,-'  ,' 
+   ||       |  V \ ,|   
+   ||       |    |` |   
+   ||       |    |   \  
+   ||       |    \    \ 
+   ||       |     |    \
+   ||       |      \_,-'
+   ||       |___,,--")_\
+   ||         |_|   /__/ 
+   ||        /__/       
+   ||         
+        )EOF");
+        break;
+    case 4:
+        printf(R"EOF(
+||=======================
+||                     ||
+||     \XX/            ||
+||     /00\            ||
+||      ||             ||
+||      ||  ogniomiot  ||
+||      ||             ||
+||      ||             ||
+||      []             ||
+||                     || 
+||                     ||                   
+||=====================||
+)EOF");
+        break;
+    case 5:
+
+        printf(R"EOF(
+||=====================||
+||    Pancerny         ||        
+||    płaszcz          || 
+||                     ||     
+||  [+=------=+]       || 
+||   \        /        || 
+||    |      |         || 
+||    |      |         || 
+||    |+ ___+|         || 
+||                     || 
+||                     ||                   
+||=====================||
+)EOF");
+        break;
+    case 6:
+        printf(R"EOF(
+||=====================||
+||                     || 
+||    Mała mikstura    ||        
+||    PŻ               || 
+||                     ||     
+||        U            || 
+||       [H]           || 
+||       [H]           || 
+||                     || 
+||                     || 
+||                     ||                   
+||=====================||
+)EOF");
+        break;
+
+    case 7:
+        printf(R"EOF(
+||=====================||
+||                     || 
+||                     ||        
+||                     || 
+||     Brak            ||     
+||     aktywnego       || 
+||     przedmiotu      || 
+||                     || 
+||                     || 
+||                     || 
+||                     ||                   
+||=====================||
+)EOF");
+        break;
+    }
+}
+
+
 
 //praca2
 void activeEq(struct player* playerXYZ, int DecisionParameter, struct items offensiveXYZ[], struct items defensiveXYZ[], struct items utilitiesXYZ[])
@@ -1037,7 +1164,40 @@ void activeEq(struct player* playerXYZ, int DecisionParameter, struct items offe
     {
         std::cout <<utilitiesXYZ[playerXYZ->activeUtilityItem1ID].itemName << "\n";
     }
-    
+    //showing graphical interpretation of items
+    if (playerXYZ->activeOffensiveItemID == -1)
+    {
+        commonGraphics(7);
+        std::cout << "\n";
+    }
+    else if(playerXYZ->activeOffensiveItemID == 0)
+    {
+        commonGraphics(4);
+    }
+    if (playerXYZ->activeDefensiveItemID == -1)
+    {
+        commonGraphics(7);
+        std::cout << "\n";
+    }
+    else if(playerXYZ->activeDefensiveItemID == 1)
+    {
+        commonGraphics(5);
+        std::cout << "\n";
+    }
+    if (playerXYZ->activeUtilityItem1ID == -1)
+    {
+        commonGraphics(7);
+        std::cout << "\n";
+    }
+    else if(playerXYZ->activeUtilityItem1ID == 0)
+    {
+        commonGraphics(6);
+        std::cout << "\n";
+    }
+    //end of graphics
+
+
+
     std::cout << "Czy chcesz zmienić aktulnie używane aktywne przedmioty na inne?\n";
     std::cout << "1 - tak, 2 - nie\n";
     do
@@ -1569,65 +1729,7 @@ void showWorldMap (struct worldMap worldMapXYZ[], struct player* playerXYZ, int 
 
 
 
-//common graphics
-void commonGraphics(int option)
-{
-    switch (option)
-    {
-    case 1:
-        printf(R"EOF(
-              .-.
-             (o.o)
-              |=|                  +-+ 
-             __|__    0============| |
-          // .=|=. \\//           `:_;'
-          \\ .=|=.  \/
-           \\(_=_)
-            (:| |:
-             || ||
-             () ()
-             || ||
-             || ||
-            ==' '== 
-            )EOF");
-        break;
-    case 2:
-        printf(R"EOF(
-                     ___
-                    /<T>\
-                   /     \      
-                  /       \
-                 /         \
 
-            )EOF");
-        break;
-    case 3:
-        printf(R"EOF(
- 
-              _,._      
-  .||,       /_ _\\     
- \.`',/      |o o| |    
- = ,. =      | - | L    
- / || \    ,-'\ /,'`.   
-   ||     ,'   `,,. `.  
-   ,|____,' , ,;' \| |  
-  (3|\    _/|/'   _| |  
-   ||/,-''  | >-'' _,\\ 
-   ||'      ==\ ,-'  ,' 
-   ||       |  V \ ,|   
-   ||       |    |` |   
-   ||       |    |   \  
-   ||       |    \    \ 
-   ||       |     |    \
-   ||       |      \_,-'
-   ||       |___,,--")_\
-   ||         |_|   /__/ 
-   ||        /__/       
-   ||         
-        )EOF");
-        break;
-    }
-}
 
 void EhimeDefaultSpawn()
 {
